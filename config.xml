@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.medidor.wifi" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Medidor de Potencia WiFi JH</name>
+    <description>Medidor de potencia WiFi estilo Hacker con Brújula Ubicadora y Gráficos en Tiempo Real por Jose Herrera</description>
+    <author email="herrejose@gmail.com" href="https://jesymca.github.io/">
+        Jose Herrera
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <preference name="AndroidXEnabled" value="true" />
+    <preference name="orientation" value="portrait" />
+    <preference name="fullscreen" value="false" />
+    
+    <platform name="android">
+        <preference name="android-minSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="34" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    </platform>
+</widget>

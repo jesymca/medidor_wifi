@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Medidor de Potencia WiFi JH</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Matrix Digital Rain Canvas Backdrop -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="container">
+        <!-- Encabezado HACKER -->
+        <header class="header">
+            <div class="header-top">
+                <span class="cyber-badge">SYSTEM_ONLINE // v2.5</span>
+                <span class="cyber-badge-green" id="hackerStatus">MÁXIMA PRECISIÓN [1%]</span>
+            </div>
+            <h1>⚡ MEDIDOR DE POTENCIA WiFi JH ⚡</h1>
+            <div class="terminal-line">>_ RASTREADOR DE ANTENA Y ANALIZADOR DE REPETIDOR</div>
+            
+            <!-- Ficha del Creador -->
+            <div class="author-card">
+                <div class="author-item"><span>👨‍💻 Creador:</span> <strong>Jose Herrera</strong></div>
+                <div class="author-item"><span>📧 Contacto:</span> <a href="mailto:herrejose@gmail.com">herrejose@gmail.com</a></div>
+                <div class="author-item"><span>🌐 Web Base:</span> <a href="https://jesymca.github.io/" target="_blank">https://jesymca.github.io/</a></div>
+            </div>
+        </header>
+
+        <!-- Display Principal (Potencia 1% a 1%) -->
+        <section class="main-display">
+            <div class="display-top">
+                <div class="signal-box">
+                    <div class="signal-icon" id="signalIcon">📶</div>
+                    <div class="signal-metrics">
+                        <div class="signal-strength" id="signalStrength">-50 <span class="unit">dBm</span></div>
+                        <div class="signal-quality" id="signalQuality">🟢 75% EXCELENTE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Potencia (Fluida de 1% en 1%) -->
+            <div class="power-bar-wrapper">
+                <div class="power-bar-header">
+                    <span>POTENCIA EN TIEMPO REAL:</span>
+                    <span class="power-percent" id="powerPercent">75%</span>
+                </div>
+                <div class="power-bar-container">
+                    <div class="power-bar" id="powerBar"></div>
+                    <div class="power-markers">
+                        <span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: Gráfico de Potencia en Tiempo Real -->
+        <section class="cyber-card">
+            <div class="card-header">
+                <span class="icon">📈</span>
+                <h2>OSCILOSCOPIO DE POTENCIA EN TIEMPO REAL</h2>
+                <span class="live-dot">● EN VIVO</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="signalChart"></canvas>
+            </div>
+            <div class="chart-legend">
+                <span class="legend-item"><span class="color-box line-color"></span> Potencia (%)</span>
+                <span class="legend-item"><span class="color-box peak-color"></span> Pico Máx (<span id="peakValue">0%</span>)</span>
+                <span class="legend-item"><span class="color-box avg-color"></span> Promedio (<span id="avgValue">0%</span>)</span>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Brújula Ubicadora de Antena WiFi & Rastreador -->
+        <section class="cyber-card radar-section">
+            <div class="card-header">
+                <span class="icon">🧭</span>
+                <h2>BRÚJULA UBICADORA DE ANTENA & RADAR DE SEÑAL</h2>
+            </div>
+            <div class="radar-layout">
+                <div class="radar-canvas-box">
+                    <canvas id="radarCompass" width="280" height="280"></canvas>
+                </div>
+                <div class="radar-info">
+                    <div class="radar-stat">
+                        <span class="stat-label">RUMBO DISPOSITIVO:</span>
+                        <span class="stat-value" id="headingText">0° (Norte)</span>
+                    </div>
+                    <div class="radar-stat">
+                        <span class="stat-label">DIRECCIÓN ANTENA DETECTADA:</span>
+                        <span class="stat-value highlight" id="targetBearingText">Calculando...</span>
+                    </div>
+                    <div class="radar-stat">
+                        <span class="stat-label">ESTIMACIÓN DE DISTANCIA:</span>
+                        <span class="stat-value" id="distanceEstText">~ -- metros</span>
+                    </div>
+
+                    <!-- Analizador de Repetidor -->
+                    <div class="repeater-advisor" id="repeaterAdvisor">
+                        <div class="advisor-title">📍 EVALUACIÓN DE UBICACIÓN DE REPETIDOR:</div>
+                        <div class="advisor-status" id="advisorStatus">ESCANEAR PARA EVALUAR</div>
+                        <div class="advisor-desc" id="advisorDesc">Colócate en el punto donde planeas instalar el repetidor para medir la viabilidad.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Detallada -->
+        <section class="info-grid">
+            <div class="info-item">
+                <span class="label">📡 SSID:</span>
+                <span class="value" id="ssid">Cargando...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">🔗 BSSID:</span>
+                <span class="value" id="bssid">Cargando...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">📶 CANAL:</span>
+                <span class="value" id="channel">Cargando...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">⚡ FRECUENCIA:</span>
+                <span class="value" id="frequency">Cargando...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">🚀 VELOCIDAD DE ENLACE:</span>
+                <span class="value" id="linkSpeed">Cargando...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">🌐 IP LOCAL:</span>
+                <span class="value" id="ipAddress">Cargando...</span>
+            </div>
+        </section>
+
+        <!-- Matriz de Datos en Tiempo Real -->
+        <section class="matrix-container">
+            <div class="matrix-title">>> MATRIZ DE RASTREO Y EVENTOS DEL SISTEMA <<</div>
+            <div class="matrix-data" id="matrixData">
+                <div class="matrix-line">[SYS] Inicializando Medidor WiFi JH v2.5...</div>
+                <div class="matrix-line">[SYS] Creador: Jose Herrera (herrejose@gmail.com)</div>
+            </div>
+        </section>
+
+        <!-- Botones de Control Hacker -->
+        <section class="controls">
+            <button id="scanBtn" class="hacker-btn glow-btn">🔍 ESCANEAR AHORA</button>
+            <button id="audioToggleBtn" class="hacker-btn">🔊 GEIGER AUDIO: ON</button>
+            <button id="matrixToggleBtn" class="hacker-btn">🌧️ MATRIX FX: ON</button>
+            <button id="exportBtn" class="hacker-btn">📊 EXPORTAR LOG</button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-line">⚡ <strong>Medidor de Potencia WiFi JH</strong> | v2.5 Cyberpunk Edition ⚡</div>
+            <div class="footer-sub">Desarrollado por <strong>Jose Herrera</strong> | Contacto: <a href="mailto:herrejose@gmail.com">herrejose@gmail.com</a> | <a href="https://jesymca.github.io/" target="_blank">jesymca.github.io</a></div>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

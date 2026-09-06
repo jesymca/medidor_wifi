@@ -1,0 +1,38 @@
+{
+  "name": "medidor_wifi",
+  "version": "1.0.0",
+  "description": "MEDIDOR WiFi JH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-jesymca:jesymca/medidor_wifi.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "devDependencies": {
+    "cordova-android": "^15.1.0",
+    "cordova-plugin-android-permissions": "^1.1.5",
+    "cordova-plugin-device-orientation": "^3.0.0",
+    "cordova-plugin-geolocation": "^5.0.0",
+    "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
+    "es6-promise-plugin": "^4.1.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-wifiwizard2": {},
+      "cordova-plugin-device-orientation": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
+      "cordova-plugin-android-permissions": {
+        "GPS_REQUIRED": "true"
+      }
+    }
+  }
+}

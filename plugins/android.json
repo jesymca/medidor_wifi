@@ -1,0 +1,29 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-wifiwizard2": {
+      "PACKAGE_NAME": "com.medidor.wifi"
+    },
+    "cordova-plugin-device-orientation": {
+      "PACKAGE_NAME": "com.medidor.wifi"
+    },
+    "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "true",
+      "PACKAGE_NAME": "com.medidor.wifi"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.medidor.wifi"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.medidor.wifi"
+    }
+  }
+}
